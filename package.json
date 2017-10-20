@@ -1,0 +1,39 @@
+{
+  "name": "re-hello-service",
+  "version": "0.0.1",
+  "description": "Example service for the Reflective Platform",
+  "main": "index.js",
+  "bin": {
+    "hello": "index.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/reflective-dk/re-hello-service.git"
+  },
+  "keywords": [
+    "reflective",
+    "example",
+    "service"
+  ],
+  "author": "Reflective Code <code@reflective.dk>",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.18.2",
+    "bunyan": "^1.8.12",
+    "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^4.0.1"
+  },
+  "config": {
+    "logLevel": "info",
+    "serviceName": "hello-service"
+  }
+}

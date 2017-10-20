@@ -1,0 +1,13 @@
+{
+  "name": "hello-service",
+  "dependencies": {
+    "re-hello-service": "git://github.com/reflective-dk/re-hello-service.git"
+  },
+  "scripts": {
+    "start": "hello"
+  },
+  "config": {
+    "logLevel": "info",
+    "serviceName": "hello-service"
+  }
+}
