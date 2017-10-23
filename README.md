@@ -14,7 +14,7 @@ npm test
 ### Components ###
 
 The aim of any service implementation is to expose logic through a defined set of
-services and operations. This particular implementation does so using set of
+services and operations. This particular implementation does so using the set of
 components described here.
 
 #### The service module (this module) ####
