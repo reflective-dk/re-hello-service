@@ -1,6 +1,4 @@
-# README #
-
-### Hello Service ###
+# Hello Service #
 
 This module defines an example service on the Reflective Platform.
 
