@@ -25,6 +25,11 @@ jobs:
           command: |
             gcloud docker -- run hello-service-test /bin/sh run-unit-tests.sh
       - run:
+          name: Run hello-service
+          command: |
+            gcloud docker -- run -d --name hello-service -p 8080:8080 gcr.io/city-7337/hello-service
+            sleep 5
+      - run:
           name: Logs
           command: |
             docker logs hello-service
