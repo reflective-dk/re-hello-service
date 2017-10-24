@@ -135,6 +135,7 @@ files added to the `7337-infrastructure` repository.
 ```
 $ gcloud source repos clone infrastructure --project=city-7337
 $ kubectl create -f ./infrastructure/kubernetes-config/hello-deployment.yml --save-config
+$ kubectl create -f ./infrastructure/integration-config/hello-service.yml --save-config
 $ kubectl set image deployment/hello hello=gcr.io/city-7337/hello:latest
 $ kubectl delete pod -l name=hello
 ```
