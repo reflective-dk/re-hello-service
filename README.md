@@ -67,10 +67,12 @@ The CircleCi configuration file is located in `.circleci/config.yml` and it
 defines the steps required to run the service and test images, run the tests, and
 deploy the service.
 
-#### CircleCI build settings ####
+### Additional steps ###
 
-In order to build projects with CircleCI, the following _Build Settings_
-must be put in place:
+In order to build the project on CircleCI and get the service deployed on
+Kubernetes, we need to go through the following steps.
+
+#### CircleCI build settings ####
 
 * Create an _Environment Variable_ called `GCLOUD_SERVICE_KEY` and set its value to
 the contents of this file:
@@ -123,4 +125,16 @@ spec:
         ports:
         - containerPort: 8080
           name: health
+```
+
+#### Deploying the service on a pod ####
+
+Then we tell Kubernetes to deploy the service on a pod via the configuration
+files added to the `7337-infrastructure` repository.
+
+```
+$ gcloud source repos clone infrastructure --project=city-7337
+$ kubectl create -f ./infrastructure/kubernetes-config/hello-deployment.yml --save-config
+$ kubectl set image deployment/hello hello=gcr.io/city-7337/hello:latest
+$ kubectl delete pod -l name=hello
 ```
