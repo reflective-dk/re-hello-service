@@ -21,7 +21,7 @@ app.listen(8080, function() {
 });
 
 app.get('/', operations.sendPackage);
-app.get('/greet', operations.sayHello);
-app.post('/greet', bodyParser.json(), operations.sayHello);
+app.get('/greet', operations.greet);
+app.post('/greet', bodyParser.json(), operations.greet);
 app.get('/echo', operations.echoContext);
 app.post('/echo', operations.echoContext);
