@@ -6,7 +6,7 @@ chai.use(chaiAsPromised);
 var expect = chai.expect;
 var rp = require('request-promise');
 
-var serviceUrl = 'http://hello-service';
+var serviceUrl = 'http://hello';
 
 describe('hello-service', () => {
     describe('hello', () => {

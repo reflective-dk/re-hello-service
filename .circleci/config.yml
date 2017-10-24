@@ -15,7 +15,7 @@ jobs:
       - run:
           name: Build application Docker image
           command: |
-            gcloud docker -- build -t gcr.io/city-7337/hello-service service-image
+            gcloud docker -- build -t gcr.io/city-7337/hello service-image
       - run:
           name: Build application test Docker image
           command: |
@@ -25,17 +25,17 @@ jobs:
           command: |
             gcloud docker -- run hello-service-test /bin/sh run-unit-tests.sh
       - run:
-          name: Run hello-service
+          name: Run hello service
           command: |
-            gcloud docker -- run -d --name hello-service -p 8080:8080 gcr.io/city-7337/hello-service
+            gcloud docker -- run -d --name hello -p 8080:8080 gcr.io/city-7337/hello
             sleep 5
       - run:
           name: Logs
           command: |
-            docker logs hello-service
+            docker logs hello
       - deploy:
           name: Push application Docker image
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              gcloud docker -- push gcr.io/city-7337/hello-service
+              gcloud docker -- push gcr.io/city-7337/hello
             fi

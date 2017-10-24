@@ -1,5 +1,5 @@
 {
-  "name": "hello-service",
+  "name": "hello",
   "dependencies": {
     "re-hello-service": "git://github.com/reflective-dk/re-hello-service.git"
   },
@@ -8,6 +8,6 @@
   },
   "config": {
     "logLevel": "info",
-    "serviceName": "hello-service"
+    "serviceName": "hello"
   }
 }
