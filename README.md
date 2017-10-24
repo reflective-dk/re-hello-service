@@ -76,7 +76,7 @@ must be put in place:
 the contents of this file:
 `7337-infrastructure/gcloud/ComputeEngineServiceAccount/based`.
 
-#### Service Configuration ####
+#### Service configuration ####
 
 When the build has been set up correctly and the service is running in a docker
 image, it needs to be exposed to the outside world by adding a service
@@ -97,4 +97,30 @@ spec:
     name: health
   selector:
     name: hello
+```
+
+#### Kubernetes deployment ####
+
+We also need to add a deployment configuration for Kubernetes in
+`7337-infrastructure/kubernetes-config`. This is the deployment configuration for
+the _hello_ service (`hello-deployment.yml`):
+
+```
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: hello
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: hello
+    spec:
+      containers:
+      - name: hello
+        image: gcr.io/city-7337/hello
+        ports:
+        - containerPort: 8080
+          name: health
 ```
