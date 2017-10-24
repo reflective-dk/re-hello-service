@@ -9,7 +9,7 @@ var mockPackage = { foo: 'bar' };
 var mockContext = { foo: 'bar' };
 var operations = require.main.require('lib/operations')(mockPackage);
 
-describe('hello-service', () => {
+describe('hello service', () => {
     describe('sendPackage', function() {
         it('should return package.json and a set of services', function() {
             expect(capture(operations.sendPackage, {}))
