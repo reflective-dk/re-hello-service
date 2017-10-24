@@ -49,3 +49,14 @@ file as usual. Anything beyond routing should be in a separate logic module.
 The CircleCi configuration file is located in `.circleci/config.yml` and it
 defines the steps required to set up a docker image with the service and test
 images, run the tests, and deploy the service.
+
+#### Building this and other projects with CircleCI ####
+
+In order to build projects with CircleCI, the following _Build Settings_
+must be put in place:
+
+##### GCLOUD_SERVICE_KEY #####
+
+Create an _Environment Variable_ called `GCLOUD_SERVICE_KEY` and set its value to
+the contents of this file:
+`7337-infrastructure/gcloud/ComputeEngineServiceAccount/based`.
