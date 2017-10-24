@@ -15,7 +15,7 @@ describe('hello-service', () => {
             expect(capture(operations.sendPackage, {}))
                 .to.deep.include({
                     'package.json': mockPackage,
-                    operations: [ 'hello', 'echo' ]
+                    operations: [ 'greet', 'echo' ]
                 });
         });
     });
