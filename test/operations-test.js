@@ -20,19 +20,19 @@ describe('hello-service', () => {
         });
     });
 
-    describe('sayHello', function() {
+    describe('greet', function() {
         it('should say hello to anonymous caller', function() {
-            expect(capture(operations.sayHello, {}))
+            expect(capture(operations.greet, {}))
                 .to.include({ greeting: 'Hello, World!' })
                 .and.to.have.property('hint').that.matches(/^Try including a name/);
         });
         it('should say hello to name via query parameter', () => {
-            expect(capture(operations.sayHello, { query: { name: 'foo' } }))
+            expect(capture(operations.greet, { query: { name: 'foo' } }))
                 .to.include({ greeting: 'Hello, Foo!' })
                 .and.not.to.have.property('hint');
         });
         it('should say hello to name via post body', () => {
-            expect(capture(operations.sayHello, { body: { name: 'foo' } }))
+            expect(capture(operations.greet, { body: { name: 'foo' } }))
                 .to.include({ greeting: 'Hello, Foo!' })
                 .and.not.to.have.property('hint');
         });
