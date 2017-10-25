@@ -139,3 +139,10 @@ $ kubectl create -f ./infrastructure/integration-config/hello-service.yml --save
 $ kubectl set image deployment/hello hello=gcr.io/city-7337/hello:latest
 $ kubectl delete pod -l name=hello
 ```
+
+#### Other useful Kubernetes commands ####
+
+```
+kubectl describe pod -l name=hello
+kubectl exec -ti hello-<specific pod name> /bin/sh
+```
