@@ -42,7 +42,7 @@ describe('hello service', () => {
         it('should echo the context from the request header', function(done) {
             expect(pcapture(operations.echoContext, {
                 header: function() { return JSON.stringify(mockContext); }
-            })).to.eventually.deep.become({ body: mockContext }).notify(done);
+            })).to.eventually.deep.include({ body: mockContext }).notify(done);
         });
         it('should return an error when the context is missing', function(done) {
             expect(pcapture(operations.echoContext, { header: function() {} }))
@@ -57,13 +57,19 @@ describe('hello service', () => {
 });
 
 function capture(op, request) {
-    var response = {};
-    op(request, { send: function(r) { response.body = r; } });
+    var response = {
+        status: function(s) { response.status = s; },
+        send: function(r) { response.body = r; }
+    };
+    op(request, response);
     return response;
 }
 
 function pcapture(op, request) {
-    var response = {};
-    return op(request, { send: function(r) { response.body = r; } })
-        .then(function() { return response; });
+    var response = {
+        status: function(s) { response.status = s; },
+        send: function(r) { response.body = r; }
+    };
+
+    return op(request, response).then(function() { return response; });
 }
