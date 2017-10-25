@@ -44,22 +44,26 @@ describe('hello service', () => {
                 header: function() { return JSON.stringify(mockContext); }
             })).to.eventually.deep.include({ body: mockContext }).notify(done);
         });
-        it('should return an error when the context is missing', function(done) {
-            expect(pcapture(operations.echoContext, { header: function() {} }))
-                .to.eventually.have.nested.property('body.error').notify(done);
-        });
-        it('should return an error when the context is not json', function(done) {
-            expect(pcapture(operations.echoContext, {
-                header: function() { return 'My name is Jason, not json.'; }
-            })).to.eventually.have.nested.property('body.error').notify(done);
-        });
+        it('should return status code 400 and an error when the context is missing',
+           function(done) {
+               expect(pcapture(operations.echoContext, { header: function() {} }))
+                   .to.eventually.include({ status: 400 })
+                   .and.have.nested.property('body.error').notify(done);
+           });
+        it('should return status code 400 and an error when the context is not json',
+           function(done) {
+               expect(pcapture(operations.echoContext, {
+                   header: function() { return 'My name is Jason, not json.'; }
+               })).to.eventually.include({ status: 400 })
+                   .and.have.nested.property('body.error').notify(done);
+           });
     });
 });
 
 function capture(op, request) {
     var response = {
-        status: function(s) { response.status = s; },
-        send: function(r) { response.body = r; }
+        status: function(s) { response.status = s; return response; },
+        send: function(r) { response.body = r; return response; }
     };
     op(request, response);
     return response;
@@ -67,8 +71,8 @@ function capture(op, request) {
 
 function pcapture(op, request) {
     var response = {
-        status: function(s) { response.status = s; },
-        send: function(r) { response.body = r; }
+        status: function(s) { response.status = s; return response; },
+        send: function(r) { response.body = r; return response; }
     };
 
     return op(request, response).then(function() { return response; });
