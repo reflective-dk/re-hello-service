@@ -6,7 +6,9 @@ var bunyan = require('bunyan');
 var express = require('express');
 var bodyParser = require('body-parser');
 
-var packageJson = require(process.env[ 'PWD' ] + '/package.json');
+var path = require('path');
+var packageFile = path.join(path.dirname(require.resolve('./index')), 'package.json');
+var packageJson = require(packageFile);
 var config = packageJson.config;
 var logger = bunyan.createLogger({
     name: config.serviceName,
