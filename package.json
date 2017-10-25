@@ -1,6 +1,6 @@
 {
   "name": "re-hello-service",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Example service for the Reflective Platform",
   "main": "index.js",
   "bin": {
