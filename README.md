@@ -9,7 +9,7 @@ working.
 
 ```
 git clone git@github.com:reflective-dk/re-hello-service.git
-cd reflective-lang-ast
+cd re-hello-service
 npm install
 npm test
 node .
